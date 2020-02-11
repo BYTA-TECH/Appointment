@@ -1,0 +1,12 @@
+
+[{
+"namespace":"com.bytatech.ayoos.appointment.avro",
+"type":"record",
+"name":"appointment",
+"fields":[
+
+{"name":"name","type":["null","string"],"default": null}
+]
+                            
+}
+]
