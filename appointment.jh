@@ -1,0 +1,17 @@
+
+entity ServiceProvider {
+	idpCode String,
+    type String
+}
+
+entity ServiceUser {
+	idpCode String
+}
+ 
+ 
+// Set pagination options
+paginate * with pagination
+
+service all with serviceImpl
+
+dto all with mapstruct
