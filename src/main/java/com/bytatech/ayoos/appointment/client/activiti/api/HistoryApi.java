@@ -50,7 +50,7 @@ public interface HistoryApi {
     @RequestMapping(value = "/history/historic-process-instances/{processInstanceId}/comments",
         produces = "application/json", 
         method = RequestMethod.POST)
-    ResponseEntity<CommentResponse> createComment(@ApiParam(value = "processInstanceId",required=true) @PathVariable("") String ,@ApiParam(value = ""  )  @Valid @RequestBody CommentResponse commentResponse);
+    ResponseEntity<CommentResponse> createComment(@ApiParam(value = "processInstanceId",required=true) @PathVariable("") String processInstanceId,@ApiParam(value = ""  )  @Valid @RequestBody CommentResponse commentResponse);
 
 
     @ApiOperation(value = "Delete a comment on a historic process instance", nickname = "deleteComment", notes = "", authorizations = {
