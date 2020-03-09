@@ -228,9 +228,9 @@ activiti:
        username: kermit
        password: kermit
 dms:
-  url: https://gotjmq.trial.alfresco.com/alfresco/api/-default-/public/alfresco/versions/1
+  url: https://wixm3z.trial.alfresco.com/alfresco/api/-default-/public/alfresco/versions/1
   security:
     basicAuth:
-       username: sarath.kumar.s@lxisoft.com   
-       password: fg5q4riwxy
+       username: pushkala.m@lxisoft.com   
+       password: nbmf44jejz
 

@@ -1,0 +1,49 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.bytatech.ayoos.appointment",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.6.0",
+    "applicationType": "microservice",
+    "baseName": "Appointment",
+    "packageName": "com.bytatech.ayoos.appointment",
+    "packageFolder": "com/bytatech/ayoos/appointment",
+    "serverPort": "8075",
+    "authenticationType": "oauth2",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZjgxYmYyNTI2NzY1NDc1NTBkMGVjMTNlMzAwOWY2NWZhZTdmZjA1YjkwY2IwODE0NWQ2OWJmZWFjOTNjY2E2ZTc1ZTQ1ZTg2ZjVlYWM5ZGQ3Y2RmNTE0ZWRiZWUxNjBhNjk1ZmEwYjRlOGE0OWJhMGMyNWEwMjExMDUwNzQ4OTc=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1581394046928,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  },
+  "generator-jhipster-swagger-cli": {
+    "promptValues": {
+      "inputSpec": "/home/ajay/Downloads/activiti.json",
+      "cliName": "activiti"
+    }
+  }
+}

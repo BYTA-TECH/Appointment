@@ -1,0 +1,45 @@
+{
+    "name": "Appointment",
+    "fields": [
+        {
+            "fieldName": "appointmentId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "serviceProvider",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serviceUser",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fromTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "toTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200309053541",
+    "entityTableName": "appointment",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "Appointment",
+    "applications": "*",
+    "microserviceName": "Appointment"
+}

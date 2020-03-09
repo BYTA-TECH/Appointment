@@ -1,0 +1,21 @@
+{
+    "name": "ServiceUser",
+    "fields": [
+        {
+            "fieldName": "idpCode",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200212061237",
+    "entityTableName": "service_user",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "Appointment",
+    "applications": "*",
+    "microserviceName": "Appointment"
+}

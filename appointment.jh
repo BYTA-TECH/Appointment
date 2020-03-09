@@ -1,4 +1,12 @@
-
+entity Appointment{
+ appointmentId Long,
+ serviceProvider String,
+ serviceUser String,
+ date LocalDate,
+ fromTime Instant,
+ toTime Instant,
+ status String
+ }
 entity ServiceProvider {
 	idpCode String,
     type String
