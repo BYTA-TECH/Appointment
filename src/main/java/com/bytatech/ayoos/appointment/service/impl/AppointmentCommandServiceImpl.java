@@ -1,6 +1,7 @@
 package com.bytatech.ayoos.appointment.service.impl;
 
-import java.util.ArrayList;
+import java.time.Instant;
+import java.util.ArrayList;  
 
 import java.util.List;
 
@@ -9,12 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Transactional; 
 
 import com.bytatech.ayoos.appointment.client.activiti.model.RestVariable;
 import com.bytatech.ayoos.appointment.client.activiti.model.SubmitFormRequest;
-import com.bytatech.ayoos.appointment.domain.Slot;
-import com.bytatech.ayoos.appointment.domain.SlotDetail; 
+import com.bytatech.ayoos.appointment.domain.SessionStatus;
 import com.bytatech.ayoos.appointment.client.activiti.api.FormsApi;
 import com.bytatech.ayoos.appointment.client.activiti.api.ProcessInstancesApi;
 import com.bytatech.ayoos.appointment.client.activiti.model.ProcessInstanceCreateRequest;
@@ -23,9 +23,7 @@ import com.bytatech.ayoos.appointment.client.activiti.model.RestFormProperty;
 import com.bytatech.ayoos.appointment.resource.assembler.NextTaskAssembler;
 import com.bytatech.ayoos.appointment.resource.assembler.NextTaskResource;
 import com.bytatech.ayoos.appointment.service.AppointmentCommandService;
-import com.bytatech.ayoos.appointment.service.dto.ServiceProviderDTO;
-import com.bytatech.ayoos.appointment.service.dto.ServiceUserDTO;
-
+import com.bytatech.ayoos.appointment.service.dto.AppointmentDTO; 
 @Service
 @Transactional
 public class AppointmentCommandServiceImpl implements AppointmentCommandService {
@@ -40,13 +38,15 @@ public class AppointmentCommandServiceImpl implements AppointmentCommandService 
 	private ServiceProviderServiceImpl serviceProviderServiceImpl;
 	@Autowired
 	private ServiceUserServiceImpl serviceUserServiceImpl;
+	@Autowired
+	 private AppointmentServiceImpl appointmentServiceImpl;
 
 	@Override
 	public NextTaskResource initiate() {
 		log.info("into ====================initiate()");
 		ProcessInstanceCreateRequest processInstanceCreateRequest = new ProcessInstanceCreateRequest();
 		List<RestVariable> variables = new ArrayList<RestVariable>();
-		processInstanceCreateRequest.setProcessDefinitionId("Appointment:1:52504");
+		processInstanceCreateRequest.setProcessDefinitionId("Appointment:2:57504");
 		log.info("*****************************************************"
 				+ processInstanceCreateRequest.getProcessDefinitionId());
 		RestVariable driverRestVariable = new RestVariable();
@@ -74,21 +74,24 @@ public class AppointmentCommandServiceImpl implements AppointmentCommandService 
 	}
 
 	@Override
-	public NextTaskResource chooseTime(String processId, SlotDetail slotDetail) {
+	public NextTaskResource chooseTime(String processId, AppointmentDTO appointmentDTO) {
 		log.info("into ====================chooseTime()");
 		List<RestFormProperty> formProperties = new ArrayList<RestFormProperty>();
 		SubmitFormRequest submitFormRequest = new SubmitFormRequest();
 		submitFormRequest.setAction("completed");
 		NextTaskResource nextTaskResource = resourceAssembler.toResource(processId);
 		submitFormRequest.setTaskId(nextTaskResource.getNextTaskId());
-		String settingStatus = "manual";
+		String settingStatus =getServiceProviderSetting(appointmentDTO.getServiceProvider());
+		 
 		// provide the doctor's setting option to settingStatus
-		Slot slot = slotDetail.getSlot();
-		ServiceProviderDTO serviceProviderDTO = slotDetail.getProvider();
-		ServiceUserDTO serviceUserDTO = slotDetail.getServiceUser();
-		serviceProviderServiceImpl.save(serviceProviderDTO);
-		serviceUserServiceImpl.save(serviceUserDTO);
-
+		 //Generate a long appointmennt id
+		    Instant instant = Instant.now();
+		    long timeMillis = instant.toEpochMilli();
+		    appointmentDTO.setAppointmentId(timeMillis);
+			appointmentDTO.setStatus(SessionStatus.PENDING.toString());
+			appointmentServiceImpl.save(appointmentDTO); 
+		 
+		
 		RestFormProperty checkUpStatusFormProperty = new RestFormProperty();
 		checkUpStatusFormProperty.setId("settingStatus");
 		checkUpStatusFormProperty.setName("settingStatus");
@@ -96,7 +99,15 @@ public class AppointmentCommandServiceImpl implements AppointmentCommandService 
 		checkUpStatusFormProperty.setReadable(true);
 		checkUpStatusFormProperty.setValue(settingStatus);
 		formProperties.add(checkUpStatusFormProperty);
-
+		
+		RestFormProperty appointmentIdProperty = new RestFormProperty();
+		appointmentIdProperty.setId("appointmentId");
+		appointmentIdProperty.setName("appointmentId");
+		appointmentIdProperty.setType("Long");
+		appointmentIdProperty.setReadable(true);
+		appointmentIdProperty.setValue(appointmentDTO.getAppointmentId().toString());
+		formProperties.add(appointmentIdProperty);
+		
 		submitFormRequest.setProperties(formProperties);
 		formsApi.submitForm(submitFormRequest);
 
@@ -104,6 +115,12 @@ public class AppointmentCommandServiceImpl implements AppointmentCommandService 
 		nextTaskResource = resourceAssembler.toResource(processId);
 		return nextTaskResource;
 
+	}
+//Get doctor setting from doctor idpcode 
+	private String getServiceProviderSetting(String serviceProvider) {
+		// TODO Auto-generated method stub
+		  String res="AUTOMATIC";
+		return res;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.bytatech.ayoos.appointment.domain;
+	package com.bytatech.ayoos.appointment.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 

@@ -1,6 +1,6 @@
 package com.bytatech.ayoos.appointment.web.rest;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bytatech.ayoos.appointment.service.AppointmentCommandService;
-import com.bytatech.ayoos.appointment.domain.SlotDetail;
+import com.bytatech.ayoos.appointment.service.dto.AppointmentDTO;
 import com.bytatech.ayoos.appointment.resource.assembler.NextTaskResource;
 
 @RestController
@@ -30,8 +30,8 @@ public class AppointmentCommandResource {
 	}
 
 	@PostMapping("/chooseTime/{processId}")
-	public NextTaskResource chooseTime(@PathVariable String processId, @RequestBody SlotDetail slotDetail) {
-		NextTaskResource task = appointmentCommandService.chooseTime(processId, slotDetail);
+	public NextTaskResource chooseTime(@PathVariable String processId, @RequestBody AppointmentDTO appointmentDTO) {
+		NextTaskResource task = appointmentCommandService.chooseTime(processId, appointmentDTO);
 		return task;
 	}
 
