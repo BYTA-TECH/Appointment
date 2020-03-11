@@ -5,6 +5,7 @@
     <userTask id="sid-8E7E092D-C3B6-44B5-8BDF-0917751389A8" name="Choose Time">
       <extensionElements>
         <activiti:formProperty id="settingStatus" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="appointmentIdProperty" type="long" required="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <sequenceFlow id="sid-08BAECD9-682C-4A37-AE31-1862B28BA88B" sourceRef="startEvent1" targetRef="sid-8E7E092D-C3B6-44B5-8BDF-0917751389A8"></sequenceFlow>
