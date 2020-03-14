@@ -5,7 +5,7 @@
     <userTask id="sid-8E7E092D-C3B6-44B5-8BDF-0917751389A8" name="Choose Time">
       <extensionElements>
         <activiti:formProperty id="settingStatus" type="string" required="true"></activiti:formProperty>
-        <activiti:formProperty id="appointmentIdProperty" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="appointmentId" type="string" required="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <sequenceFlow id="sid-08BAECD9-682C-4A37-AE31-1862B28BA88B" sourceRef="startEvent1" targetRef="sid-8E7E092D-C3B6-44B5-8BDF-0917751389A8"></sequenceFlow>
@@ -25,17 +25,17 @@
     <sequenceFlow id="sid-EC8AF998-DEB0-4283-9A61-B632E6858AC5" sourceRef="sid-453CA702-F21A-44AC-AF37-8B69C5A6FC67" targetRef="sid-5A1B49BD-14AA-4788-91D0-528AD25B700C"></sequenceFlow>
     <endEvent id="sid-75FEFFFC-9712-4C74-8ED0-D6927760F5FF"></endEvent>
     <sequenceFlow id="sid-251F2A9B-11B9-4C80-9E0F-9E07BECF456C" sourceRef="sid-D2AA594A-8419-48B8-A55A-1901425762B5" targetRef="sid-75FEFFFC-9712-4C74-8ED0-D6927760F5FF"></sequenceFlow>
-    <sequenceFlow id="sid-33BE2565-8E65-4D58-B20D-03FDF16FC15E" name="automatic" sourceRef="sid-6A42E3C8-2CD4-4BFE-9CFE-378D2D071EA7" targetRef="sid-D2AA594A-8419-48B8-A55A-1901425762B5">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${settingStatus=="automatic"}]]></conditionExpression>
+    <sequenceFlow id="sid-33BE2565-8E65-4D58-B20D-03FDF16FC15E" name="AUTOMATIC" sourceRef="sid-6A42E3C8-2CD4-4BFE-9CFE-378D2D071EA7" targetRef="sid-D2AA594A-8419-48B8-A55A-1901425762B5">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${settingStatus=="AUTOMATIC"}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="sid-B6E7F99E-EC23-4F6D-BE3C-3938DAF7C03F" name="manual" sourceRef="sid-6A42E3C8-2CD4-4BFE-9CFE-378D2D071EA7" targetRef="sid-453CA702-F21A-44AC-AF37-8B69C5A6FC67">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${settingStatus=="manual"}]]></conditionExpression>
+    <sequenceFlow id="sid-B6E7F99E-EC23-4F6D-BE3C-3938DAF7C03F" name="MANUAL" sourceRef="sid-6A42E3C8-2CD4-4BFE-9CFE-378D2D071EA7" targetRef="sid-453CA702-F21A-44AC-AF37-8B69C5A6FC67">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${settingStatus=="MANUAL"}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="sid-AAA7A306-CAFB-450F-835C-293B4D7A7ECC" name="Reject" sourceRef="sid-5A1B49BD-14AA-4788-91D0-528AD25B700C" targetRef="sid-75FEFFFC-9712-4C74-8ED0-D6927760F5FF">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approvalStatus=="Reject"}]]></conditionExpression>
+    <sequenceFlow id="sid-AAA7A306-CAFB-450F-835C-293B4D7A7ECC" name="REJECT" sourceRef="sid-5A1B49BD-14AA-4788-91D0-528AD25B700C" targetRef="sid-75FEFFFC-9712-4C74-8ED0-D6927760F5FF">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approvalStatus=="REJECT"}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="sid-4A7EA57F-EFCD-4764-94A1-6CDB248B3033" name="Accept" sourceRef="sid-5A1B49BD-14AA-4788-91D0-528AD25B700C" targetRef="sid-D2AA594A-8419-48B8-A55A-1901425762B5">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approvalStatus=="Accept"}]]></conditionExpression>
+    <sequenceFlow id="sid-4A7EA57F-EFCD-4764-94A1-6CDB248B3033" name="ACCEPT" sourceRef="sid-5A1B49BD-14AA-4788-91D0-528AD25B700C" targetRef="sid-D2AA594A-8419-48B8-A55A-1901425762B5">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approvalStatus=="ACCEPT"}]]></conditionExpression>
     </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_Appointment">
@@ -44,7 +44,7 @@
         <omgdc:Bounds height="30.0" width="30.0" x="105.0" y="225.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-8E7E092D-C3B6-44B5-8BDF-0917751389A8" id="BPMNShape_sid-8E7E092D-C3B6-44B5-8BDF-0917751389A8">
-        <omgdc:Bounds height="80.0" width="100.0" x="195.0" y="200.0"></omgdc:Bounds>
+        <omgdc:Bounds height="80.0" width="100.0" x="180.0" y="200.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-6A42E3C8-2CD4-4BFE-9CFE-378D2D071EA7" id="BPMNShape_sid-6A42E3C8-2CD4-4BFE-9CFE-378D2D071EA7">
         <omgdc:Bounds height="40.0" width="40.0" x="340.0" y="220.0"></omgdc:Bounds>
@@ -70,12 +70,12 @@
         <omgdi:waypoint x="635.1606425702811" y="200.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-35B82E2C-CC36-4EDE-B629-34768386D43F" id="BPMNEdge_sid-35B82E2C-CC36-4EDE-B629-34768386D43F">
-        <omgdi:waypoint x="295.0" y="240.2164502164502"></omgdi:waypoint>
-        <omgdi:waypoint x="340.4130434782609" y="240.41304347826087"></omgdi:waypoint>
+        <omgdi:waypoint x="280.0" y="240.19157088122606"></omgdi:waypoint>
+        <omgdi:waypoint x="340.4230769230769" y="240.42307692307693"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-08BAECD9-682C-4A37-AE31-1862B28BA88B" id="BPMNEdge_sid-08BAECD9-682C-4A37-AE31-1862B28BA88B">
         <omgdi:waypoint x="135.0" y="240.0"></omgdi:waypoint>
-        <omgdi:waypoint x="195.0" y="240.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="240.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-251F2A9B-11B9-4C80-9E0F-9E07BECF456C" id="BPMNEdge_sid-251F2A9B-11B9-4C80-9E0F-9E07BECF456C">
         <omgdi:waypoint x="685.0" y="240.0"></omgdi:waypoint>
