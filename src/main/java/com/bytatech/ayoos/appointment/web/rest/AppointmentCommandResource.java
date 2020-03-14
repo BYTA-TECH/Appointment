@@ -35,9 +35,9 @@ public class AppointmentCommandResource {
 		return task;
 	}
 
-	@PostMapping("/paymentProcess/{processId}")
-	public NextTaskResource paymentProcess(@PathVariable String processId) {
-		NextTaskResource task = appointmentCommandService.paymentProcess(processId);
+	@PostMapping("/paymentProcess/{paymentStatus}/{processId}")
+	public NextTaskResource paymentProcess(@PathVariable String processId ,@PathVariable String paymentStatus) {
+		NextTaskResource task = appointmentCommandService.paymentProcess(processId,paymentStatus);
 		return task;
 	}
 

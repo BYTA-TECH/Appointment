@@ -8,7 +8,7 @@ public interface AppointmentCommandService {
 
 	public NextTaskResource chooseTime(String processId,AppointmentDTO appointmentDTO);
 
-	public NextTaskResource paymentProcess(String processId);
+	public NextTaskResource paymentProcess(String processId,String paymentStatus);
 
 	public NextTaskResource appointmentApproval(String processId,String approval);
 }
