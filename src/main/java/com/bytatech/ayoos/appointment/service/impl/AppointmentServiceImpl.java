@@ -119,7 +119,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		Appointment resultantAppointment = null;
 		List<Appointment> appointmentList = appointmentRepository.findAll();
 		for (Appointment appointment : appointmentList) {
-			if (appointment.getAppointmentId() == Long.parseLong(appointmentId)) {
+			 if (appointment.getAppointmentId() == Long.parseLong(appointmentId)) {
 				resultantAppointment = appointment;
 			}
 		}

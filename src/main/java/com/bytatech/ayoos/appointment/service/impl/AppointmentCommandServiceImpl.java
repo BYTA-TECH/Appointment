@@ -61,8 +61,7 @@ public class AppointmentCommandServiceImpl implements AppointmentCommandService 
 		ProcessInstanceCreateRequest processInstanceCreateRequest = new ProcessInstanceCreateRequest();
 		List<RestVariable> variables = new ArrayList<RestVariable>();
 		processInstanceCreateRequest.setProcessDefinitionId(deploymentId);
-		log.info("*****************************************************"
-				+ processInstanceCreateRequest.getProcessDefinitionId());
+	 
 		RestVariable driverRestVariable = new RestVariable();
 		driverRestVariable.setName("doctor");
 		driverRestVariable.setType("string");
@@ -74,14 +73,9 @@ public class AppointmentCommandServiceImpl implements AppointmentCommandService 
 		variables.add(driverRestVariable);
 		variables.add(driverRestVariable2);
 		processInstanceCreateRequest.setVariables(variables);
-		ResponseEntity<ProcessInstanceResponse> processInstanceResponse = processInstanceApi
-				.createProcessInstance(processInstanceCreateRequest);
-		String processInstanceId = processInstanceResponse.getBody().getId();
-		String processDefinitionId = processInstanceCreateRequest.getProcessDefinitionId();
-		log.info("++++++++++++++++processDefinitionId++++++++++++++++++" + processDefinitionId);
-		log.info("++++++++++++++++ProcessInstanceId is+++++++++++++ " + processInstanceId);
-
-		processInstanceApi.createProcessInstance(processInstanceCreateRequest);
+		ResponseEntity<ProcessInstanceResponse> processInstanceResponse = processInstanceApi.createProcessInstance(processInstanceCreateRequest);
+		String processInstanceId = processInstanceResponse.getBody().getId();	 
+ 
 		NextTaskResource nextTaskResource = resourceAssembler.toResource(processInstanceId);
 		return nextTaskResource;
 
@@ -97,8 +91,7 @@ public class AppointmentCommandServiceImpl implements AppointmentCommandService 
 		List<RestFormProperty> formProperties = new ArrayList<RestFormProperty>();
 		SubmitFormRequest submitFormRequest = new SubmitFormRequest();
 		submitFormRequest.setAction("completed");
-
-		submitFormRequest.setTaskId(taskId);
+        submitFormRequest.setTaskId(taskId);
 		String settingStatus = getServiceProviderSetting(appointmentDTO.getServiceProvider());
 
 		// provide the doctor's setting option to settingStatus
@@ -147,9 +140,9 @@ public class AppointmentCommandServiceImpl implements AppointmentCommandService 
 
 		/*
 		 * get appointment with given appointment id update it's status
-		 */
+		 */ 
 		AppointmentDTO appointmentDTO = appointmentServiceImpl.findByAppointmentId(appointmentId);
-		
+		 
 		if (paymentStatus.equals("SUCESS"))
 			appointmentDTO.setStatus(SessionStatus.RESERVED.toString());
 		else
@@ -205,7 +198,8 @@ public class AppointmentCommandServiceImpl implements AppointmentCommandService 
 	public ResponseEntity<DataResponse> getHistoricTaskusingProcessIdAndName(String processId, String name) {
 
 		return historyApi.listHistoricTaskInstances(null, processId, null, null, deploymentId, null, null, null, null,
-				null, null, name, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+				null, null, name,
+				null, null, null, null, null, null, null, null, null, null, null, null, null, null,
 				null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 	}
@@ -222,7 +216,7 @@ public class AppointmentCommandServiceImpl implements AppointmentCommandService 
 		String propertyId = null, source = null;
 		for (LinkedHashMap<String, String> requestMap : requestFormProperties) {
 			propertyId = requestMap.get("propertyId");
-			if (propertyId.equals("appointmentid")) {
+			if (propertyId.equals("appointmentId")) {
 				source = requestMap.get("propertyValue");
 			}
 		}
